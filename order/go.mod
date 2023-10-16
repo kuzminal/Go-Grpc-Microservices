@@ -4,8 +4,6 @@ go 1.18
 
 require (
 	github.com/golang/protobuf v1.5.3
-	github.com/huseyinbabal/microservices-proto/golang/order v1.0.39
-	github.com/huseyinbabal/microservices/order v0.0.0-20230110182123-6a0c8d9f8a8a
 	google.golang.org/grpc v1.58.3
 	gorm.io/driver/postgres v1.5.3
 	gorm.io/gorm v1.25.5
