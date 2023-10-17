@@ -1,16 +1,24 @@
-proto-order:
+proto-order-server:
 	protoc -I ./proto \
-    --go_out ./order/internal/adapters/grpc/generated \
+    --go_out ./order/internal/adapters/grpc/generated/orders \
     --go_opt paths=source_relative \
-    --go-grpc_out ./order/internal/adapters/grpc/generated \
+    --go-grpc_out ./order/internal/adapters/grpc/generated/orders \
     --go-grpc_opt paths=source_relative \
     ./proto/order.proto
 
-proto-payment:
+proto-payment-server:
 	protoc -I ./proto \
-    --go_out ./payment/internal/adapters/grpc/generated \
+    --go_out ./payment/internal/adapters/grpc/generated/payment \
     --go_opt paths=source_relative \
-    --go-grpc_out ./payment/internal/adapters/grpc/generated \
+    --go-grpc_out ./payment/internal/adapters/grpc/generated/payment \
+    --go-grpc_opt paths=source_relative \
+    ./proto/payment.proto
+
+proto-payment-client:
+	protoc -I ./proto \
+    --go_out ./order/internal/adapters/grpc/generated/payments \
+    --go_opt paths=source_relative \
+    --go-grpc_out ./order/internal/adapters/grpc/generated/payments \
     --go-grpc_opt paths=source_relative \
     ./proto/payment.proto
 

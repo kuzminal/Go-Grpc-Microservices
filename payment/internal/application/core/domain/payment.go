@@ -14,7 +14,7 @@ type Payment struct {
 func NewPayment(customerId int64, orderId int64, totalPrice float32) Payment {
 	return Payment{
 		CreatedAt:  time.Now().Unix(),
-		Status:     "Pending",
+		Status:     "Success",
 		CustomerID: customerId,
 		OrderId:    orderId,
 		TotalPrice: totalPrice,

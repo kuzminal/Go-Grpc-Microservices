@@ -3,7 +3,7 @@ package grpc
 import (
 	"fmt"
 	"github.com/kuzminal/microservices/payment/config"
-	payment "github.com/kuzminal/microservices/payment/internal/adapters/grpc/generated"
+	"github.com/kuzminal/microservices/payment/internal/adapters/grpc/generated/payment"
 	"github.com/kuzminal/microservices/payment/internal/ports"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -36,4 +36,5 @@ func (a Adapter) Run() {
 	if err := grpcServer.Serve(listen); err != nil {
 		log.Fatalf("failed to serve grpc on port ")
 	}
+	fmt.Println(grpcServer.GetServiceInfo())
 }

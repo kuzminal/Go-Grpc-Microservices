@@ -3,7 +3,7 @@ package grpc
 import (
 	"fmt"
 	"github.com/kuzminal/microservices/order/config"
-	order "github.com/kuzminal/microservices/order/internal/adapters/grpc/generated"
+	order "github.com/kuzminal/microservices/order/internal/adapters/grpc/generated/orders"
 	"github.com/kuzminal/microservices/order/internal/ports"
 	"google.golang.org/grpc/reflection"
 	"log"

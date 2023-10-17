@@ -3,7 +3,7 @@ package grpc
 import (
 	"context"
 	"fmt"
-	order "github.com/kuzminal/microservices/order/internal/adapters/grpc/generated"
+	order "github.com/kuzminal/microservices/order/internal/adapters/grpc/generated/orders"
 	"github.com/kuzminal/microservices/order/internal/application/core/domain"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -21,7 +21,7 @@ func (a Adapter) Create(ctx context.Context, request *order.CreateOrderRequest) 
 	newOrder := domain.NewOrder(request.UserId, orderItems)
 	result, err := a.api.PlaceOrder(newOrder)
 	if err != nil {
-		return nil, status.New(codes.Internal, fmt.Sprintf("failed to create order. %v ", err)).Err()
+		return nil, status.New(codes.Internal, fmt.Sprintf("failed to create orders. %v ", err)).Err()
 	}
 	return &order.CreateOrderResponse{OrderId: result.ID}, nil
 }

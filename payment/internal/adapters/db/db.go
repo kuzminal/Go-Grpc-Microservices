@@ -55,7 +55,7 @@ func NewAdapter(dataSourceUrl string) (*Adapter, error) {
 		return nil, fmt.Errorf("db connection error: %v", openErr)
 	}
 
-	if err := db.Use(otelgorm.NewPlugin(otelgorm.WithDBName("payment"))); err != nil {
+	if err := db.Use(otelgorm.NewPlugin(otelgorm.WithDBName("payments"))); err != nil {
 		return nil, fmt.Errorf("db otel plugin error: %v", err)
 	}
 

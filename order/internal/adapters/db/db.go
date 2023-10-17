@@ -6,7 +6,6 @@ import (
 	"github.com/kuzminal/microservices/order/internal/application/core/domain"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	"gorm.io/gorm/logger"
 )
 
 type Order struct {
@@ -28,7 +27,9 @@ type Adapter struct {
 }
 
 func NewAdapter(dataSourceUrl string) (*Adapter, error) {
-	db, openErr := gorm.Open(postgres.Open(dataSourceUrl), &gorm.Config{Logger: logger.Default.LogMode(logger.Info)})
+	db, openErr := gorm.Open(postgres.Open(dataSourceUrl), &gorm.Config{
+		//Logger: logger.Default.LogMode(logger.Info),
+	})
 
 	if openErr != nil {
 		return nil, fmt.Errorf("db connection error: %v", openErr)
@@ -80,4 +81,12 @@ func (a Adapter) Save(order *domain.Order) error {
 		order.ID = int64(orderModel.ID)
 	}
 	return res.Error
+}
+
+func (a Adapter) UpdateStatus(field string, value interface{}, orderId int64) error {
+	res := a.db.Table("orders").Where("id = ?", orderId).Update(field, value)
+	if res.Error != nil {
+		return res.Error
+	}
+	return nil
 }
